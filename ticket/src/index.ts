@@ -6,8 +6,9 @@ const connectToDB = async () => {
         throw new Error('jwt key must be definded')
     }
     if (!process.env.MONGO_URI) {
-        throw new Error('jwt key must be definded')
+        throw new Error('mongo_uri key must be definded')
     }
+
     try {
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
