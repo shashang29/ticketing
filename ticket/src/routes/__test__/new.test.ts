@@ -1,6 +1,5 @@
 import request from 'supertest';
 import { app } from '../../app';
-import { Ticket } from '../../../models/ticket'
 
 it('listening for post requests', async () => {
     const res = await request(app)
@@ -58,5 +57,7 @@ it('create a ticket if everything is valid', async () => {
             price: 20
         })
         .expect(201);
+
+
 });
 
