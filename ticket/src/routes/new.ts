@@ -37,4 +37,6 @@ router.post('/api/tickets', requireAuth,
         res.status(201).send(ticket);
     });
 
+
+
 export { router as createTicketRouter };
