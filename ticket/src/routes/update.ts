@@ -5,7 +5,8 @@ import {
     NotFoundError,
     requireAuth,
     NotAuthorizedError,
-    validateRequest
+    validateRequest,
+    BadRequestError
 } from '@ss-ticketing/common/build/index';
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
 import { natsWrapper } from '../nats-wrapper';
@@ -33,6 +34,9 @@ router.put('/api/tickets/:id',
 
         if (ticket.userId !== req.currentUser!.id) {
             throw new NotAuthorizedError();
+        }
+        if (ticket.orderId) {
+            throw new BadRequestError('cannot edit a reserved ticket')
         }
 
         const { title, price } = req.body;
