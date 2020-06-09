@@ -20,8 +20,8 @@ it('fetches orders for an particular user', async () => {
     const ticketTwo = await buildTicket();
     const ticketThree = await buildTicket();
 
-    const userOne = global.signup();
-    const userTwo = global.signup();
+    const userOne = global.signin();
+    const userTwo = global.signin();
     // Create one order as User #1
     await request(app)
         .post('/api/orders')

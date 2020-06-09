@@ -10,7 +10,7 @@ it('error if ticket does not exist', async () => {
 
     await request(app)
         .post('/api/orders')
-        .set('Cookie', global.signup())
+        .set('Cookie', global.signin())
         .send({ ticketId })
         .expect(404)
 });
@@ -32,7 +32,7 @@ it('error if ticket is already reserved', async () => {
 
     await request(app)
         .post('/api/orders')
-        .set('Cookie', global.signup())
+        .set('Cookie', global.signin())
         .send({ ticketId: ticket.id })
         .expect(400)
 });
@@ -47,7 +47,7 @@ it('reserves a ticket ', async () => {
 
     await request(app)
         .post('/api/orders')
-        .set('Cookie', global.signup())
+        .set('Cookie', global.signin())
         .send({ ticketId: ticket.id })
         .expect(201)
 });
@@ -62,7 +62,7 @@ it('emit an order created order', async () => {
 
     await request(app)
         .post('/api/orders')
-        .set('Cookie', global.signup())
+        .set('Cookie', global.signin())
         .send({ ticketId: ticket.id })
         .expect(201);
 

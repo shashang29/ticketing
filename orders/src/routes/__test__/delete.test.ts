@@ -14,7 +14,7 @@ it('marks an order as cancelled', async () => {
   });
   await ticket.save();
 
-  const user = global.signup();
+  const user = global.signin();
   // make a request to create an order
   const { body: order } = await request(app)
     .post('/api/orders')
@@ -43,7 +43,7 @@ it('emit an order created order', async () => {
   });
   await ticket.save();
 
-  const user = global.signup();
+  const user = global.signin();
   // make a request to create an order
   const { body: order } = await request(app)
     .post('/api/orders')
