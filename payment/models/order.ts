@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { OrderStatus } from '@ss-ticketing/common';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface OrderAttrs {
     id: string;
@@ -40,7 +41,10 @@ const orderScehma = new mongoose.Schema({
             delete ret._id;
         }
     }
-})
+});
+
+orderScehma.set('versionKey', 'version');
+orderScehma.plugin(updateIfCurrentPlugin);
 
 orderScehma.statics.build = (attrs: OrderAttrs) => {
     return new Order({
