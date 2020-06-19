@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { app } from './app';
 
 const connectToDB = async () => {
+    console.log('Starting up')
     if (!process.env.JWT_KEY) {
         throw new Error('jwt key must be definded')
     }
