@@ -1,37 +1,33 @@
 import Link from 'next/link';
 
 export default ({ currentUser }) => {
+    const links = [
+        !currentUser && { label: 'Sign Up', href: '/auth/signup' },
+        !currentUser && { label: 'Sign In', href: '/auth/signin' },
+        currentUser && { label: 'Sell Tickets', href: '/tickets/new' },
+        currentUser && { label: 'My Orders', href: '/orders' },
+        currentUser && { label: 'Sign Out', href: '/auth/signout' },
+    ]
+        .filter((linkConfig) => linkConfig)
+        .map(({ label, href }) => {
+            return (
+                <li key={href} className="nav-item">
+                    <Link href={href}>
+                        <a className="nav-link">{label}</a>
+                    </Link>
+                </li>
+            );
+        });
 
     return (
-        <nav className='navbar navbar-light bg-light '>
-            <Link href='/'>
-                <a className='navbar-brand'>Tix</a>
+        <nav className="navbar navbar-light bg-light">
+            <Link href="/">
+                <a className="navbar-brand">GitTix</a>
             </Link>
-            <div className='d-flex justify-content-end'>
-                <ul className='nav d-flex align-items-center'>
-                    {currentUser ?
-                        <div className=' d-flex'>
-                            <Link href='/tickets/new'>
-                                <a className='nav-link'>Sell Ticket</a>
-                            </Link>
-                            <Link href='/api/orders'>
-                                <a className='nav-link'>My Orders</a>
-                            </Link>
-                            <Link href='/auth/signout'>
-                                <a className='nav-link'>Sign out</a>
-                            </Link>
-                        </div>
-                        : (<div className=' d-flex'>
-                            <Link href='/auth/signin'>
-                                <a className='nav-link'>Sign In</a>
-                            </Link>
-                            <Link href='/auth/signup'>
-                                <a className='nav-link'>Sign up</a>
-                            </Link>
-                        </div>
-                        )}
-                </ul>
+
+            <div className="d-flex justify-content-end">
+                <ul className="nav d-flex align-items-center">{links}</ul>
             </div>
         </nav>
-    )
+    );
 };
