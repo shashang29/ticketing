@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 export default ({ currentUser }) => {
 
@@ -15,7 +14,7 @@ export default ({ currentUser }) => {
                             <Link href='/tickets/new'>
                                 <a className='nav-link'>Sell Ticket</a>
                             </Link>
-                            <Link href='/orders'>
+                            <Link href='/api/orders'>
                                 <a className='nav-link'>My Orders</a>
                             </Link>
                             <Link href='/auth/signout'>
