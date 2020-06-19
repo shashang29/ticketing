@@ -11,13 +11,15 @@ const OrderShow = ({ order, currentUser }) => {
         body: {
             orderId: order.id,
         },
-        onSuccess: (payment) => console.log(payment),
+        onSuccess: () => Router.push('/orders')
     });
 
     useEffect(() => {
         const findTimeLeft = () => {
-            const msLeft = new Date(order.expiresAt) - new Date();
-            setTimeLeft(Math.round(msLeft / 1000));
+            const msLeft = Math.round((new Date(order.expiresAt) - new Date()) / 1000);
+            const minutes = Math.floor(msLeft / 60);
+            let seconds = msLeft - (minutes * 60);
+            setTimeLeft(`${minutes}:${seconds}`);
         };
 
         findTimeLeft();
@@ -34,7 +36,9 @@ const OrderShow = ({ order, currentUser }) => {
 
     return (
         <div>
-            Time left to pay: {timeLeft} seconds
+            <h4>
+                Time left to pay: {timeLeft}
+            </h4>
             <StripeCheckout
                 token={({ id }) => sendRequest({ token: id })}
                 stripeKey="pk_test_I1EtbGOWq7Ytjo2qfpBtoCj300lZyMbmCq"
