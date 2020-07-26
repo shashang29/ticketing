@@ -1,0 +1,21 @@
+.closed {
+    display: none;
+}
+
+.open {
+    display: block;
+}
+
+@media screen and (min-width: 960px) {
+    .open {
+        display: none;
+    }
+}
+
+.navbar {
+    background-color: #06A69E
+}
+
+.top100 {
+    top: 100%;
+}
