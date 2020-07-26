@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="pv4 ph3 ph5-m ph6-l mid-gray">
+        <footer className="pv4 ph3 ph5-m ph6-l mid-gray bg-white bt">
             <small className="f6 db tc">
                 © 2020 <b className="ttu">Motor Sales Inc.</b>
             </small>

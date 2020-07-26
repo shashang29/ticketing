@@ -1,4 +1,5 @@
 import styles from "./SearchBox.module.css";
+import Button from "../Button/Button";
 
 const SearchBox = () => {
     const make = ["Audi", "BMW", "Honda", "Hyundai", "Skoda", "Suzuki"];
@@ -15,6 +16,9 @@ const SearchBox = () => {
                             <option selected disabled>
                                 Make
                             </option>
+                            {make.map((item) => {
+                                return <option key={item}>{item}</option>;
+                            })}
                         </select>
                     </div>
                     <div className="dtc-ns tc pb3">
@@ -64,12 +68,7 @@ const SearchBox = () => {
                     </div>
                 </div>
 
-                <button
-                    className={styles.button + " ph4 white flex center "}
-                    type="submit"
-                >
-                    Search
-                </button>
+                <Button title="Search" />
             </form>
         </div>
     );
